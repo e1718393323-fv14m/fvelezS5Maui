@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="456" height="456" viewBox="0 0 456 456" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#FFFFFF" stroke-width="18">
+        <ellipse cx="228" cy="150" rx="90" ry="32" />
+        <path d="M138 150 V306 C138 324 178 338 228 338 C278 338 318 324 318 306 V150" />
+        <path d="M138 202 C138 220 178 234 228 234 C278 234 318 220 318 202" />
+        <path d="M138 254 C138 272 178 286 228 286 C278 286 318 272 318 254" />
+    </g>
+</svg>

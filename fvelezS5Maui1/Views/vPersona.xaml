@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:fvelezS5Maui1.Models"
+             x:Class="fvelezS5Maui1.Views.vPersona"
+             Title="Personas">
+
+    <VerticalStackLayout Spacing="20" Padding="20">
+
+        <Label Text="SEMANA 5: BASES DE DATOS LOCALES CON SQLITE"
+               VerticalOptions="Center"
+               FontSize="18"
+               HorizontalOptions="Center"
+               HorizontalTextAlignment="Center" />
+
+        <Entry x:Name="txtNombre"
+               Placeholder="Ingrese su nombre"
+               MaxLength="25" />
+
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="10">
+
+            <Button x:Name="btnAgregar"
+                    Text="Agregar Persona"
+                    Clicked="btnAgregar_Clicked"
+                    Grid.Row="0" />
+
+            <Label x:Name="statusMessage"
+                   Grid.Row="1" />
+
+            <Button x:Name="btnListar"
+                    Text="Get All People"
+                    Clicked="btnListar_Clicked"
+                    Grid.Row="2" />
+
+            <CollectionView x:Name="listaPersona"
+                            Grid.Row="3">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Persona">
+                        <Grid ColumnDefinitions="*,2*" Padding="0,4">
+                            <Label Text="{Binding Id}" />
+                            <Label Grid.Column="1" Text="{Binding Nombre}" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+
+    </VerticalStackLayout>
+</ContentPage>
