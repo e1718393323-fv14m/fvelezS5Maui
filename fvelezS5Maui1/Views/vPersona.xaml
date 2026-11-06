@@ -5,45 +5,65 @@
              x:Class="fvelezS5Maui1.Views.vPersona"
              Title="Personas">
 
-    <VerticalStackLayout Spacing="20" Padding="20">
+    <Grid Padding="20" RowSpacing="12"
+          RowDefinitions="Auto,Auto,Auto,Auto,Auto,*">
 
-        <Label Text="SEMANA 5: BASES DE DATOS LOCALES CON SQLITE"
-               VerticalOptions="Center"
+        <Label Grid.Row="0"
+               Text="SEMANA 5: BASES DE DATOS LOCALES CON SQLITE"
                FontSize="18"
                HorizontalOptions="Center"
                HorizontalTextAlignment="Center" />
 
-        <Entry x:Name="txtNombre"
+        <Entry Grid.Row="1"
+               x:Name="txtNombre"
                Placeholder="Ingrese su nombre"
                MaxLength="25" />
 
-        <Grid RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="10">
-
-            <Button x:Name="btnAgregar"
-                    Text="Agregar Persona"
-                    Clicked="btnAgregar_Clicked"
-                    Grid.Row="0" />
-
-            <Label x:Name="statusMessage"
-                   Grid.Row="1" />
-
-            <Button x:Name="btnListar"
-                    Text="Get All People"
-                    Clicked="btnListar_Clicked"
-                    Grid.Row="2" />
-
-            <CollectionView x:Name="listaPersona"
-                            Grid.Row="3">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="models:Persona">
-                        <Grid ColumnDefinitions="*,2*" Padding="0,4">
-                            <Label Text="{Binding Id}" />
-                            <Label Grid.Column="1" Text="{Binding Nombre}" />
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+        <Grid Grid.Row="2" ColumnDefinitions="*,*" ColumnSpacing="10">
+            <Button x:Name="btnAgregar" Text="Agregar Persona"
+                    Clicked="btnAgregar_Clicked" Grid.Column="0" />
+            <Button x:Name="btnListar" Text="Get All People"
+                    Clicked="btnListar_Clicked" Grid.Column="1" />
         </Grid>
 
-    </VerticalStackLayout>
+        <Grid Grid.Row="3" ColumnDefinitions="2*,*" ColumnSpacing="10">
+            <Label x:Name="lblSeleccion"
+                   Text="Toque una persona de la lista para eliminarla"
+                   FontSize="13"
+                   TextColor="{StaticResource Gray}"
+                   VerticalOptions="Center" />
+            <Button x:Name="btnEliminar" Text="Eliminar"
+                    Clicked="btnEliminar_Clicked"
+                    IsEnabled="False"
+                    BackgroundColor="{StaticResource Danger}"
+                    Grid.Column="1" />
+        </Grid>
+
+        <Label Grid.Row="4"
+               x:Name="statusMessage"
+               FontSize="13" />
+
+        <CollectionView Grid.Row="5"
+                        x:Name="listaPersona"
+                        SelectionMode="Single"
+                        SelectionChanged="listaPersona_SelectionChanged">
+
+            <CollectionView.Header>
+                <Grid ColumnDefinitions="*,2*" Padding="10,6"
+                      BackgroundColor="{StaticResource Surface}">
+                    <Label Text="Id" FontAttributes="Bold" TextColor="Black" />
+                    <Label Grid.Column="1" Text="Nombre" FontAttributes="Bold" TextColor="Black" />
+                </Grid>
+            </CollectionView.Header>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Persona">
+                    <Grid ColumnDefinitions="*,2*" Padding="10,8">
+                        <Label Text="{Binding Id}" />
+                        <Label Grid.Column="1" Text="{Binding Nombre}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
 </ContentPage>
